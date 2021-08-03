@@ -41,11 +41,11 @@ export default function Card({ item, open, setOpen }) {
           }}
         >
           <Swiper scrollbar className="w-full h-full rounded-xl cursor-move">
-            {item.image.map((image) => (
+            {item.image && item.image.map((image) => (
               <SwiperSlide key={image.id}>
                 <Image
                   className="object-cover select-none"
-                  src={"https://media.graphcms.com/" + image.handle || "WkKacRhfREGUfJNPo20Q"}
+                  src={"https://media.graphcms.com/" + image.handle}
                   layout="fill"
                   alt={item.name}
                 />
@@ -68,7 +68,7 @@ export default function Card({ item, open, setOpen }) {
     >
       <Image
         layout="fill"
-        src={"https://media.graphcms.com/" + item.image[0].handle || "WkKacRhfREGUfJNPo20Q"}
+        src={"https://media.graphcms.com/" + (item.image[0] ? item.image[0].handle : "WkKacRhfREGUfJNPo20Q")}
         alt={item.name}
         className="object-cover"
       />

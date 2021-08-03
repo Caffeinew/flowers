@@ -39,7 +39,7 @@ export default function CardDescription({ item, setDescription }) {
               }
               key={param.id}
             >
-              <dt className="font-medium text-gray-500">{param.size} см</dt>
+              <dt className="font-medium text-gray-500">{param.size}</dt>
               <dd className="text-gray-900">{param.price} &#8381;</dd>
             </div>
           ))}

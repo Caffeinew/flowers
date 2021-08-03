@@ -26,11 +26,17 @@ export default function Home({ data }) {
   }, [search, price, selectedVariants]);
 
   function filterSearch(item) {
-    if (
-      item.name.toLowerCase().includes(search) ||
-      item.variant.name.toLowerCase().includes(search)
-    ) {
-      return true;
+    if (item.name) {
+      if (
+        item.name.toLowerCase().includes(search) ||
+        item.variant.name.toLowerCase().includes(search)
+      ) {
+        return true;
+      }
+    } else {
+      if (item.variant.name.toLowerCase().includes(search)) {
+        return true;
+      }
     }
     return false;
   }
@@ -109,7 +115,6 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   const data = await getIndexProps();
-  console.log(data)
   return {
     props: {
       data,
