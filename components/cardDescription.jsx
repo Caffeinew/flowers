@@ -24,9 +24,12 @@ export default function CardDescription({ item, setDescription }) {
         </motion.span>
       </div>
       <div className="border-t border-gray-200">
-        <span className="block px-3 py-2 lg:p-4 text-xl text-gray-700">
-          {item.name}
-        </span>
+        {item.name && (
+          <span className="block px-3 py-2 lg:p-4 text-xl text-gray-700">
+            {item.name}
+          </span>
+        )}
+
         <dl>
           {item.params.map((param, index) => (
             <div

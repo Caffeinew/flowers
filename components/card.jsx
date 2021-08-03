@@ -45,7 +45,7 @@ export default function Card({ item, open, setOpen }) {
               <SwiperSlide key={image.id}>
                 <Image
                   className="object-cover select-none"
-                  src={"https://media.graphcms.com/" + image.handle}
+                  src={"https://media.graphcms.com/" + image.handle || "WkKacRhfREGUfJNPo20Q"}
                   layout="fill"
                   alt={item.name}
                 />
@@ -68,7 +68,7 @@ export default function Card({ item, open, setOpen }) {
     >
       <Image
         layout="fill"
-        src={"https://media.graphcms.com/" + item.image[0].handle}
+        src={"https://media.graphcms.com/" + item.image[0].handle || "WkKacRhfREGUfJNPo20Q"}
         alt={item.name}
         className="object-cover"
       />
