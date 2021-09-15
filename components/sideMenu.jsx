@@ -9,28 +9,42 @@ export default function SideMenu({
   handleVariant,
 }) {
   return (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      transition={linear}
-      className="fixed right-0 top-0 bottom-0 z-40 bg-white w-full sm:w-2/3 md:w-1/2 xl:w-1/3 2xl:w-1/4 border-l p-4 md:p-8 shadow-xl overflow-y-scroll"
-    >
-      <div className="flex items-center justify-between pb-4">
-        <h1 className="text-xl text-gray-900">Категории</h1>
-        <motion.span
-          onClick={() => setIsOpen(false)}
-          whileTap={{ scale: 0.9 }}
-          className="w-10 h-10 p-2 cursor-pointer text-gray-500"
-        >
-          <XIcon />
-        </motion.span>
-      </div>
+    <>
+      <motion.div
+        className="fixed bg-black bg-opacity-20 z-40 inset-0 sm:backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={linear}
+        onClick={(event) =>
+          event.target === event.currentTarget && setIsOpen(false)
+        }
+      />
 
-      {categories.map((category) => (
-        <div key={category.id} className="border-t">
-          <h2 className="p-2 block text-2xl text-gray-900">{category.name}</h2>
-          {category.variants.map((variant, index) => (
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={linear}
+        className="fixed z-50 right-0 top-0 bottom-0 bg-white w-full sm:w-2/3 md:w-1/2 xl:w-1/3 2xl:w-1/4 border-l p-4 md:p-8 shadow-xl overflow-y-scroll"
+      >
+        <div className="flex items-center justify-between pb-4">
+          <h1 className="text-xl text-gray-900">Категории</h1>
+          <motion.span
+            onClick={() => setIsOpen(false)}
+            whileTap={{ scale: 0.9 }}
+            className="w-10 h-10 p-2 cursor-pointer text-gray-500"
+          >
+            <XIcon />
+          </motion.span>
+        </div>
+
+        {categories.map((category) => (
+          <div key={category.id} className="border-t">
+            <h2 className="p-2 block text-2xl text-gray-900">
+              {category.name}
+            </h2>
+            {category.variants.map((variant, index) => (
               <h3
                 className={
                   "pl-4 h-12 flex items-center justify-between cursor-pointer text-gray-500 rounded-xl " +
@@ -53,8 +67,9 @@ export default function SideMenu({
                 </AnimatePresence>
               </h3>
             ))}
-        </div>
-      ))}
-    </motion.div>
+          </div>
+        ))}
+      </motion.div>
+    </>
   );
 }

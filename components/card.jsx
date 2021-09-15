@@ -2,7 +2,10 @@ import "swiper/swiper.min.css";
 import "swiper/components/scrollbar/scrollbar.min.css";
 
 import Image from "next/image";
-import { ChevronDownIcon, InformationCircleIcon } from "@heroicons/react/outline";
+import {
+  ChevronDownIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Scrollbar } from "swiper/core";
@@ -13,7 +16,9 @@ SwiperCore.use([Scrollbar]);
 
 export default function Card({ item, open, setOpen }) {
   const [description, setDescription] = useState(false);
-
+  if (!item.image[0]) {
+    return <></>;
+  }
   if (item.id === open) {
     return (
       <motion.div
@@ -40,18 +45,31 @@ export default function Card({ item, open, setOpen }) {
             setDescription(false);
           }}
         >
-          <Swiper scrollbar className="w-full h-full rounded-xl cursor-move">
-            {item.image && item.image.map((image) => (
-              <SwiperSlide key={image.id}>
-                <Image
-                  className="object-cover select-none"
-                  src={"https://media.graphcms.com/" + image.handle}
-                  layout="fill"
-                  alt={item.name}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {item.image.length > 1 ? (
+            <Swiper
+              scrollbar
+              className="relative w-full h-full rounded-xl cursor-move"
+            >
+              {item.image.map((image) => (
+                <SwiperSlide key={image.id} className="relative">
+                  <Image
+                    className="object-cover select-none"
+                    src={"https://media.graphcms.com/" + image.handle}
+                    layout="fill"
+                    alt={item.name}
+                  />
+                  <div className="absolute inset-0 z-20 shadow-inner" />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <Image
+              layout="fill"
+              src={"https://media.graphcms.com/" + item.image[0].handle}
+              alt={item.name}
+              className="object-cover"
+            />
+          )}
         </div>
       </motion.div>
     );
@@ -68,10 +86,11 @@ export default function Card({ item, open, setOpen }) {
     >
       <Image
         layout="fill"
-        src={"https://media.graphcms.com/" + (item.image[0] ? item.image[0].handle : "WkKacRhfREGUfJNPo20Q")}
+        src={"https://media.graphcms.com/" + item.image[0].handle}
         alt={item.name}
         className="object-cover"
       />
+      <div className="absolute inset-0 z-20 shadow-inner" />
     </motion.div>
   );
 }

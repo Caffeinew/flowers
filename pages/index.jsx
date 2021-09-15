@@ -42,9 +42,11 @@ export default function Home({ data }) {
   }
 
   function filterPrice(item) {
+    if(!item.params[0].price && price) return false;
+
     let n = 0;
     item.params.forEach((param) => {
-      if (param.price <= +price || price === "") n++;
+      if (param.price <= +price || price === "" ) n++;
     });
 
     if (n) {
@@ -93,22 +95,23 @@ export default function Home({ data }) {
           setSelected={setSelectedVariants}
         />
       </Grid>
-      {filtered.length ? (
-        <Grid styles={"grid-cols-2 mb-32"}>
-          <AnimateSharedLayout>
-            {filtered.map((item) => (
-              <Card key={item.id} item={item} open={open} setOpen={setOpen} />
-            ))}
-          </AnimateSharedLayout>
-        </Grid>
-      ) : (
-        <div className="flex flex-grow place-items-center text-gray-500 sm:text-2xl py-16">
-          <EmojiSadIcon className="w-10 sm:w-16 h-10 sm:h-16 mr-2" />
-          <span>Ничего не найдено</span>
+      <AnimateSharedLayout>
+        <div className="flex flex-grow w-full justify-center pb-32">
+          {filtered.length ? (
+            <Grid styles={"grid-cols-2"}>
+              {filtered.map((item) => (
+                <Card key={item.id} item={item} open={open} setOpen={setOpen} />
+              ))}
+            </Grid>
+          ) : (
+            <div className="flex place-items-center text-gray-500 sm:text-2xl py-16">
+              <EmojiSadIcon className="w-10 sm:w-16 h-10 sm:h-16 mr-2" />
+              <span>Ничего не найдено</span>
+            </div>
+          )}
         </div>
-      )}
-
-      <Footer />
+        <Footer />
+      </AnimateSharedLayout>
     </>
   );
 }

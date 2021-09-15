@@ -1,21 +1,27 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class Doc extends Document {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
 
   render() {
     return (
       <Html lang="ru">
-        <Head />
+        <Head>
+          <link rel="shortcut icon" href="/favicon.svg" />
+          <meta
+            property="og:image"
+            content="https://wlf-36.ru/logo.webp"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
-export default Doc
+export default Doc;

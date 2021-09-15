@@ -7,16 +7,16 @@ export default function Header({ slides }) {
   return (
     <header className="max-w-screen-2xl mx-auto relative font-light w-full md:aspect-w-5 md:aspect-h-3 lg:aspect-h-2 2xl:aspect-h-1">
       <div className="md:absolute md:inset-0 lg:flex lg:p-4 2xl:px-8">
-        <Swiper className="h-screen md:h-3/4 lg:h-full lg:w-8/12 lg:rounded-xl">
+        <Swiper className="relative h-screen md:h-3/4 lg:h-full lg:w-8/12 lg:rounded-xl">
           {slides.map((slide) => (
             <SwiperSlide
               key={slide.id}
-              className="md:grid md:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-3 cursor-move"
+              className="relative md:grid md:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-3 cursor-move"
             >
               <h1 className="flex h-2/5 md:h-full md:col-span-2 lg:col-span-1 2xl:col-span-2 px-8 pt-8 items-center justify-center text-center text-4xl xl:text-5xl 2xl:text-6xl text-gray-700">
                 {slide.title}
               </h1>
-              <div className="relative h-3/5 md:h-full ">
+              <div className="relative h-3/5 md:h-full">
                 <Image
                   className="object-cover lg:rounded-xl"
                   layout="fill"
@@ -36,11 +36,15 @@ export default function Header({ slides }) {
             " 2xl:grid-cols-2 2xl:grid-rows-3"
           }
         >
-          <Link href="/contacts">
-            <a className="hover:bg-gray-50 flex items-center justify-center w-full h-full row-span-2 lg:row-span-1 lg:border-b 2xl:row-span-2 2xl:border-0">
-              Контакты
-            </a>
-          </Link>
+          <a
+            href="https://instagram.com/wlf_vrn"
+            target="_blank"
+            rel="noopener"
+            className="hover:bg-gray-50 flex items-center justify-center w-full h-full row-span-2 lg:row-span-1 lg:border-b 2xl:row-span-2 2xl:border-0"
+          >
+            Инстаграм
+          </a>
+
           <Link href="/about">
             <a className="hover:bg-gray-50 flex items-center justify-center w-full h-full row-span-2 lg:row-span-1 border-l md:border-r lg:border-0 2xl:row-span-2 2xl:border-l">
               О нас
