@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { XIcon } from "@heroicons/react/outline";
 import { linear } from "../lib/transitions";
+import { memo } from "react";
 
-export default function CardDescription({ item, setDescription }) {
+function Component({ item, setDescription }) {
   return (
     <motion.div
       className="absolute rounded-xl inset-x-0 h-full bg-white z-20"
@@ -33,7 +34,7 @@ export default function CardDescription({ item, setDescription }) {
   );
 }
 
-export function Params({ params }) {
+function ParamsInner({ params }) {
   if (!params[0].price) {
     return (
       <div className="py-3 px-6 text-sm md:text-md lg:text-lg">
@@ -58,3 +59,6 @@ export function Params({ params }) {
     </div>
   ));
 }
+
+export const CardDescription = memo(Component)
+export const Params = memo(ParamsInner)

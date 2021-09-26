@@ -1,15 +1,12 @@
-import Input from "../components/input";
-import Category from "../components/category";
-import Grid from "../components/grid";
-import Card from "../components/card";
-import Header from "../components/header";
+import {Input} from "../components/input";
+import {Category} from "../components/category";
+import {Grid} from "../components/grid";
+import {Card} from "../components/card";
+import {Header} from "../components/header";
 import Logo from "../components/logo";
 import Footer from "../components/footer";
-
 import { getIndexProps } from "../lib/graphcms";
-
 import { EmojiSadIcon } from "@heroicons/react/outline";
-
 import { AnimateSharedLayout } from "framer-motion";
 import { useState, useEffect } from "react";
 import Head from "next/head";
@@ -124,3 +121,4 @@ export async function getStaticProps() {
     },
   };
 }
+

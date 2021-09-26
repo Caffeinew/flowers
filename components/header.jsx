@@ -2,8 +2,9 @@ import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import Link from "next/link";
+import {memo} from "react";
 
-export default function Header({ slides }) {
+function Component({ slides }) {
   return (
     <header className="max-w-screen-2xl mx-auto relative font-light w-full md:aspect-w-5 md:aspect-h-3 lg:aspect-h-2 2xl:aspect-h-1">
       <div className="md:absolute md:inset-0 lg:flex lg:p-4 2xl:px-8">
@@ -67,4 +68,7 @@ export default function Header({ slides }) {
       </div>
     </header>
   );
-}
+};
+
+
+export const Header = memo(Component)

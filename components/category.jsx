@@ -1,10 +1,10 @@
 import { ChevronRightIcon } from "@heroicons/react/outline";
-import { useState, useEffect } from "react";
-import SideMenu from "./sideMenu";
+import { useState, useEffect, memo } from "react";
+import {SideMenu} from "./sideMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { linear } from "../lib/transitions";
 
-export default function Category({
+function Component({
   categories,
   selected,
   setSelected,
@@ -65,3 +65,5 @@ export default function Category({
     </>
   );
 }
+
+export const Category = memo(Component)

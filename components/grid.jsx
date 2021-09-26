@@ -1,4 +1,6 @@
-export default function Grid({ children, styles }) {
+import { memo } from "react";
+
+function Component({ children, styles }) {
   return (
     <div
       className={
@@ -10,3 +12,5 @@ export default function Grid({ children, styles }) {
     </div>
   );
 }
+
+export const Grid = memo(Component)

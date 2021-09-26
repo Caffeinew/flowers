@@ -4,18 +4,18 @@ import "swiper/components/scrollbar/scrollbar.min.css";
 import Image from "next/image";
 import {
   ChevronDownIcon,
-  InformationCircleIcon,
 } from "@heroicons/react/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Scrollbar } from "swiper/core";
-import { useState } from "react";
-import CardDescription from "./cardDescription";
+import { useState, memo } from "react";
+import {CardDescription} from "./cardDescription";
 
 SwiperCore.use([Scrollbar]);
 
-export default function Card({ item, open, setOpen }) {
+function Component({ item, open, setOpen }) {
   const [description, setDescription] = useState(false);
+  
   if (!item.image[0]) {
     return <></>;
   }
@@ -31,7 +31,6 @@ export default function Card({ item, open, setOpen }) {
           whileTap={{ scale: 0.9 }}
         >
           <ChevronDownIcon />
-          {/* <InformationCircleIcon /> */}
         </motion.span>
         <AnimatePresence>
           {description && (
@@ -94,3 +93,5 @@ export default function Card({ item, open, setOpen }) {
     </motion.div>
   );
 }
+
+export const Card = memo(Component)

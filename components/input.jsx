@@ -1,6 +1,7 @@
 import { SearchIcon } from "@heroicons/react/outline";
+import { memo } from "react";
 
-export default function Input({ item, state, setState }) {
+function Component({ item, state, setState }) {
   return (
     <div className="w-full">
       <label
@@ -34,3 +35,5 @@ export default function Input({ item, state, setState }) {
     </div>
   );
 }
+
+export const Input = memo(Component)

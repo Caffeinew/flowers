@@ -15,6 +15,7 @@ class Doc extends Document {
             property="og:image"
             content="https://wlf-36.ru/logo.webp"
           />
+          <script src="http://localhost:8097"></script>
         </Head>
         <body>
           <Main />

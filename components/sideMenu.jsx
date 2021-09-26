@@ -1,13 +1,9 @@
 import { XIcon, CheckIcon } from "@heroicons/react/outline";
 import { motion, AnimatePresence } from "framer-motion";
+import { memo, useCallback } from "react";
 import { linear } from "../lib/transitions";
 
-export default function SideMenu({
-  selected,
-  setIsOpen,
-  categories,
-  handleVariant,
-}) {
+function Component({ selected, setIsOpen, categories, handleVariant }) {
   return (
     <>
       <motion.div
@@ -51,7 +47,10 @@ export default function SideMenu({
                   (index % 2 === 0 ? "bg-white" : " bg-gray-50")
                 }
                 key={variant.id}
-                onClick={() => handleVariant(variant.name)}
+                onClick={useCallback(
+                  () => handleVariant(variant.name),
+                  [variant.name]
+                )}
               >
                 {variant.name}
                 <AnimatePresence>
@@ -73,3 +72,5 @@ export default function SideMenu({
     </>
   );
 }
+
+export const SideMenu = memo(Component);
